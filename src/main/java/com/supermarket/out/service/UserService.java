@@ -4,9 +4,12 @@ import com.supermarket.out.dto.UserDTO;
 import com.supermarket.out.entity.User;
 import com.supermarket.out.repo.UserRepo;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author : Nimesh Piyumantha
@@ -22,8 +25,13 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public UserDTO saveUser(UserDTO userDTO){
+    public UserDTO saveUser(UserDTO userDTO) {
         userRepo.save(modelMapper.map(userDTO, User.class));
         return userDTO;
+    }
+
+    public List<UserDTO> getAllUsers() {
+        List<User> userList = userRepo.findAll();
+        return modelMapper.map(userList, new TypeToken<List<UserDTO>>() {}.getType());
     }
 }
