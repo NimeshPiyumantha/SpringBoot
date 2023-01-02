@@ -16,8 +16,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class User {
     @Id
-    private int id;
+    private String id;
     private String name;
     private String address;
+    private double salary;
 
 }
