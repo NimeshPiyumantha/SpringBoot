@@ -44,8 +44,9 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @GetMapping("/getUserByUserIdAndAddress/{userId}//{address}")
-    public UserDTO getUserByUserIdAndAddress(@PathVariable String userId, String address) {
+    @GetMapping("/getUserByUserIdAndAddress/{userId}/{address}")
+    public UserDTO getUserByUserIdAndAddress(@PathVariable String userId, @PathVariable String address) {
+        System.out.println("UserId : "+userId +"\nUserAddress : "+address);
         return userService.getUserByUserIdAndAddress(userId, address);
     }
 }
